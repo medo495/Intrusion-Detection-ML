@@ -1,0 +1,24 @@
+# Virtual environment
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Machine Learning models
+models/*.joblib
+models/*.pkl
+
+# Dataset
+data/raw/
+data/processed/
+data/sample/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
