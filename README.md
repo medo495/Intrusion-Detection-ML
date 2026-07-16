@@ -172,7 +172,7 @@ streamlit run app/app.py
 Toujours récupérer les dernières modifications avant de commencer.
 
 ```
-git pull origin main
+git pull origin Main
 ```
 
 Créer une branche personnelle.
