@@ -1,120 +1,301 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="IDS ML Dashboard",
+    page_title="Cyber IDS Platform",
     page_icon="🛡️",
-    layout="wide"
+    layout="wide",
 )
 
-# CSS
-st.markdown("""
-<style>
+st.markdown(
+    """
+    <style>
+    :root {
+        color-scheme: dark;
+    }
 
-.main {
-    padding-top: 1rem;
-}
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+    }
 
-[data-testid="metric-container"] {
-    background-color: #1E293B;
-    border: 1px solid #334155;
-    padding: 15px;
-    border-radius: 15px;
-    text-align: center;
-}
+    .main .block-container {
+        padding-top: 0.8rem;
+        padding-bottom: 2rem;
+    }
 
-h1 {
-    color: #00E5FF;
-}
+    .hero-card, .panel-card, .workflow-card, .nav-card {
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(34, 211, 238, 0.2);
+        border-radius: 20px;
+        padding: 1.15rem 1.25rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
 
-</style>
-""", unsafe_allow_html=True)
+    .hero-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: #67e8f9;
+        margin-bottom: 0.35rem;
+    }
 
-# Header
-st.title("🛡️ Intrusion Detection System")
+    .hero-subtitle {
+        color: #cbd5e1;
+        font-size: 1.0rem;
+        line-height: 1.7;
+    }
 
-st.markdown("""
-### Détection intelligente des attaques réseau
+    .section-title {
+        color: #67e8f9;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+    }
 
-Application basée sur le Machine Learning et le dataset CICIDS2017.
-""")
+    .muted {
+        color: #94a3b8;
+        font-size: 0.95rem;
+    }
 
-st.divider()
+    .pill {
+        display: inline-block;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(0, 229, 255, 0.12);
+        color: #67e8f9;
+        font-size: 0.85rem;
+        margin: 0.2rem 0.2rem 0.2rem 0;
+        border: 1px solid rgba(0, 229, 255, 0.22);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-# KPIs
+st.sidebar.markdown(
+    """
+    <div class="hero-card">
+        <div style="font-size: 1.3rem; font-weight: 800; color: #67e8f9;">🛡️ IDS ML Lab</div>
+        <div style="color: #cbd5e1; margin-top: 0.4rem;">Cybersecurity monitoring dashboard</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.sidebar.markdown("")
+st.sidebar.caption("Project: Network Intrusion Detection System")
+st.sidebar.caption("Dataset: CICIDS2017")
+st.sidebar.caption("Model: Decision Tree")
+st.sidebar.caption("Status: Operational")
+st.sidebar.caption("Version: 2.0")
+
+st.markdown(
+    """
+    <div class="hero-card">
+        <div class="hero-title">Cybersecurity Threat Intelligence Platform</div>
+        <div class="hero-subtitle">
+            A professional intrusion detection solution for monitoring network traffic,
+            analyzing suspicious behavior, and classifying flows as BENIGN or ATTACK using a trained Decision Tree model.
+        </div>
+        <div style="margin-top: 0.75rem;">
+            <span class="pill">CICIDS2017</span>
+            <span class="pill">Binary Classification</span>
+            <span class="pill">Decision Tree</span>
+            <span class="pill">Streamlit Dashboard</span>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown("")
+
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.metric("📂 Dataset", "CICIDS2017")
-
+    st.metric("Dataset", "CICIDS2017", help="Public intrusion detection dataset")
 with col2:
-    st.metric("🤖 Modèles", "3")
-
+    st.metric("Model", "Decision Tree", help="Final selected classifier")
 with col3:
-    st.metric("🎯 Classes", "2")
-
+    st.metric("Classes", "BENIGN / ATTACK", help="Binary classification target")
 with col4:
-    st.metric("🟢 Statut", "Actif")
+    st.metric("Runtime", "Live", help="Real-time analysis workflow")
 
-st.divider()
+st.markdown("")
 
-# Objectifs
-st.subheader("🎯 Objectifs du projet")
+left, right = st.columns([1.35, 1.0])
 
-c1, c2 = st.columns(2)
+with left:
+    st.markdown(
+        """
+        <div class="panel-card">
+            <div class="section-title">📌 Project Overview</div>
+            <div class="muted">
+                This system is designed to support cybersecurity engineering research by combining
+                machine learning, data analysis, and interactive visualization. The workflow covers
+                dataset inspection, preprocessing, traffic classification, and report generation.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-with c1:
-    st.success("Détection des attaques réseau")
-    st.success("Analyse du trafic")
-    st.success("Visualisation des données")
+with right:
+    st.markdown(
+        """
+        <div class="panel-card">
+            <div class="section-title">🧠 Selected Model</div>
+            <div class="muted">
+                The final classifier is a Decision Tree model trained offline and saved using Joblib.
+                It is used for predicting whether a network flow is BENIGN or ATTACK.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-with c2:
-    st.success("Machine Learning")
-    st.success("Comparaison des modèles")
-    st.success("Déploiement Streamlit")
+st.markdown("")
 
-st.divider()
+st.markdown(
+    """
+    <div class="panel-card">
+        <div class="section-title">🧩 Main Workflow</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Description
-st.subheader("📖 Présentation")
+wf1, wf2, wf3, wf4 = st.columns(4)
 
-st.info("""
-Ce projet vise à développer un système IDS (Intrusion Detection System)
-basé sur le Machine Learning afin d'identifier automatiquement les
-attaques réseau à partir du dataset CICIDS2017.
-""")
+with wf1:
+    st.markdown(
+        """
+        <div class="workflow-card">
+            <div style="font-size: 1.1rem; color: #67e8f9;">1. Data Intake</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Upload network flow data in CSV format.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-st.divider()
+with wf2:
+    st.markdown(
+        """
+        <div class="workflow-card">
+            <div style="font-size: 1.1rem; color: #67e8f9;">2. Validation</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Verify the required columns and inspect quality issues.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Technologies
-st.subheader("⚙️ Technologies utilisées")
+with wf3:
+    st.markdown(
+        """
+        <div class="workflow-card">
+            <div style="font-size: 1.1rem; color: #67e8f9;">3. Inference</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Run the trained Decision Tree model to generate predictions.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-t1, t2, t3 = st.columns(3)
+with wf4:
+    st.markdown(
+        """
+        <div class="workflow-card">
+            <div style="font-size: 1.1rem; color: #67e8f9;">4. Reporting</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Visualize results and export a prediction report.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-with t1:
-    st.success("Python")
-    st.success("Pandas")
-    st.success("NumPy")
+st.markdown("")
 
-with t2:
-    st.success("Scikit-Learn")
-    st.success("XGBoost")
-    st.success("Joblib")
+col_a, col_b = st.columns(2)
 
-with t3:
-    st.success("Streamlit")
-    st.success("Plotly")
-    st.success("Git & GitHub")
+with col_a:
+    st.markdown(
+        """
+        <div class="panel-card">
+            <div class="section-title">🏗️ Architecture</div>
+            <div class="muted">
+                CSV upload → field validation → preprocessing → Decision Tree inference → visualization/reporting.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-st.divider()
+with col_b:
+    st.markdown(
+        """
+        <div class="panel-card">
+            <div class="section-title">📚 Dataset Information</div>
+            <div class="muted">
+                CICIDS2017 contains labeled network traffic designed for intrusion detection research.
+                The current deployment focuses on a binary setting: BENIGN vs ATTACK.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-# Fonctionnalités
-st.subheader("🚀 Fonctionnalités")
+st.markdown("")
 
-st.write("✅ Upload de fichiers CSV")
-st.write("✅ Dashboard interactif")
-st.write("✅ Visualisation des données")
-st.write("✅ Prédiction des attaques")
-st.write("✅ Export des résultats")
+st.markdown(
+    """
+    <div class="panel-card">
+        <div class="section-title">🧭 Navigation</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.divider()
+nav1, nav2, nav3 = st.columns(3)
 
+with nav1:
+    st.markdown(
+        """
+        <div class="nav-card">
+            <div style="font-size: 1.05rem; color: #67e8f9;">📊 Dashboard</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Explore dataset quality, distributions, and descriptive statistics.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with nav2:
+    st.markdown(
+        """
+        <div class="nav-card">
+            <div style="font-size: 1.05rem; color: #67e8f9;">🔍 Prediction</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Upload a CSV, validate features, and infer threat labels.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with nav3:
+    st.markdown(
+        """
+        <div class="nav-card">
+            <div style="font-size: 1.05rem; color: #67e8f9;">ℹ️ About</div>
+            <div class="muted" style="margin-top: 0.4rem;">
+                Review project objectives, methodology, and institutional details.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
